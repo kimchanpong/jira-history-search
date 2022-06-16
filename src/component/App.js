@@ -1,14 +1,11 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import HistoryTable from "./HistoryTable";
 import Variable from "../variable/variable";
 import Interface from "../interface/interface";
 import SearchForm from "./SearchForm";
+import SearchList from "./SearchList";
 
 
 class App extends React.Component {
@@ -95,20 +92,10 @@ class App extends React.Component {
                     handleTag={this.handleTag}
                 />
 
-                <Box sx={{
-                    marginTop: 5,
-                    marginBottom: 10
-                }}>
-                    {
-                            this.state.loading ?
-                                'Loading..'
-                                :
-                                this.state.historyList.length > 0 ?
-                                    <HistoryTable historyList={this.state.historyList} />
-                                    :
-                                    '조회된 내역이 없습니다.'
-                    }
-                </Box>
+                <SearchList
+                    loading={this.state.loading}
+                    historyList={this.state.historyList}
+                />
             </Box>
         )
     }
