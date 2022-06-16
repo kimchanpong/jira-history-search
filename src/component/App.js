@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import HistoryTable from "./HistoryTable";
 import Variable from "../variable/variable";
 import Interface from "../interface/interface";
+import SearchForm from "./SearchForm";
 
 
 class App extends React.Component {
@@ -90,63 +91,12 @@ class App extends React.Component {
                     지라 월간보고 추출
                 </Typography>
 
-                <Box
-                    sx={{
-                        marginTop: 1
-                    }}
-                >
-                    <TextField
-                        id="startDate"
-                        name="startDate"
-                        label="기한 시작일시"
-                        helperText="월간보고 시작 기준일(ex: 2022-01-01)"
-                        onChange={this.handleTag.bind(this)}
-                    />
-                    <TextField
-                        id="endDate"
-                        name="endDate"
-                        label="기한 종료일시"
-                        helperText="월간보고 종료 기준일(ex: 2022-12-31)"
-                        onChange={this.handleTag.bind(this)}
-                    />
-                </Box>
-                <Divider />
-                <Box
-                    sx={{
-                        marginTop: 1
-                    }}
-                >
-                    <TextField
-                        id="userName"
-                        name="userName"
-                        label="사용자명"
-                        helperText="노트북 로그인계정의 등록 소유자명(ex: 홍길동)"
-                        onChange={this.handleTag.bind(this)}
-                    />
-                    <TextField
-                        id="adAccount"
-                        name="adAccount"
-                        label="AD 계정"
-                        helperText="노트북 로그인 계정(ex: Hong.Kildong)"
-                        onChange={this.handleTag.bind(this)}
-                    />
-                </Box>
-                <Box
-                    sx={{
-                        marginTop: 1
-                    }}
-                >
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 1, mb: 2 }}
-                    >
-                        조회
-                    </Button>
-                </Box>
+                <SearchForm
+                    handleTag={this.handleTag}
+                />
+
                 <Box sx={{
-                    marginTop: 1,
+                    marginTop: 5,
                     marginBottom: 10
                 }}>
                     {
