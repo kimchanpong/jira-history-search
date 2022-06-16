@@ -30,12 +30,12 @@ class App extends React.Component {
         const api = new Interface();
 
         let getList = await api.callApi('GET', url, {
-                "jql":`project=NGCPO AND due >= ${this.state.startDate} AND due <= ${this.state.endDate} AND assignee in (${this.state.adAccount}) order by updated DESC`, "maxResults":200
+                "jql":Variable.SearchQuerystring('NGCPO', this.state), "maxResults":200
             }
         )
 
         const getListEih = await api.callApi('GET', url, {
-                "jql":`project=EIH AND resolved >= ${this.state.startDate} AND resolved <= ${this.state.endDate} AND watcher in (${this.state.adAccount}) order by updated DESC`, "maxResults":200
+                "jql":Variable.SearchQuerystring('EIH', this.state), "maxResults":200
             }
         )
 
@@ -48,7 +48,6 @@ class App extends React.Component {
     }
 
     renderLoading = () => {
-        console.log('renderLoading :: ', this.state.loading)
         this.setState({
            loading: true
         });
