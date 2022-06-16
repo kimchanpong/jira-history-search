@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import axios from "axios/index";
 import HistoryTable from "./HistoryTable";
-import Variable from "./Variable";
+import Variable from "../variable/variable";
+import Interface from "../interface/interface";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -24,31 +25,16 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-       /**/
-    }
-
-    callApiGet = async (url, params) => {
-        const response = await axios.get(url, {
-                params: params,
-                headers: {
-                    Authorization: 'Basic ' + Variable.Authorization,
-                    'Content-type': 'application/json'
-                }
-            }
-        );
-
-        return response.data;
-    }
-
     getHistory = async () => {
         const url = Variable.ProxyUrl + Variable.JiraUrl + Variable.RestSearchUrl;
-        let getList = await this.callApiGet(url, {
+        const api = new Interface();
+
+        let getList = await api.callApi('GET', url, {
                 "jql":`project=NGCPO AND due >= ${this.state.startDate} AND due <= ${this.state.endDate} AND assignee in (${this.state.adAccount}) order by updated DESC`, "maxResults":200
             }
         )
 
-        const getListEih = await this.callApiGet(url, {
+        const getListEih = await api.callApi('GET', url, {
                 "jql":`project=EIH AND resolved >= ${this.state.startDate} AND resolved <= ${this.state.endDate} AND watcher in (${this.state.adAccount}) order by updated DESC`, "maxResults":200
             }
         )
