@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import Variable from "../variable/variable";
+import CommonUtil from "../common/common";
 import Interface from "../interface/interface";
 import SearchForm from "./SearchForm";
 import SearchList from "./SearchList";
@@ -24,16 +24,18 @@ class App extends React.Component {
     }
 
     getHistory = async () => {
-        const url = Variable.ProxyUrl + Variable.JiraUrl + Variable.RestSearchUrl;
+        const proxyUrl = process.env.REACT_APP_PROXY_URL;
+        const jiraUrl = process.env.REACT_APP_JIRA_URL;
+        const url = proxyUrl + jiraUrl + CommonUtil.RestSearchUrl;
         const api = new Interface();
 
         let getList = await api.callApi('GET', url, {
-                "jql":Variable.SearchQuerystring('NGCPO', this.state), "maxResults":200
+                "jql":CommonUtil.SearchQuerystring('NGCPO', this.state), "maxResults":200
             }
         )
 
         const getListEih = await api.callApi('GET', url, {
-                "jql":Variable.SearchQuerystring('EIH', this.state), "maxResults":200
+                "jql":CommonUtil.SearchQuerystring('EIH', this.state), "maxResults":200
             }
         )
 

@@ -1,12 +1,11 @@
 // import { createProxyMiddleware } from "http-proxy-middleware"; //이렇게 하면 안되고
-import Variable from "./component/Variable";
-const { createProxyMiddleware } = require("http-proxy-middleware"); // 이렇게 하면 됨 무슨차이지?
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function(app) {
     app.use(
-        Variable.RestSearchUrl,
+        '/rest/api/2/search',
         createProxyMiddleware({
-            target: Variable.JiraUrl,
+            target: process.env.REACT_APP_JIRA_URL,
             changeOrigin: true,
         })
     );

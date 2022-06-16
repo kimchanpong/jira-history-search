@@ -1,12 +1,11 @@
 import axios from "axios";
-import Variable from "../variable/variable";
 
 class Interface {
     callGet = async (url, params) => {
         const response = await axios.get(url, {
                 params: params,
                 headers: {
-                    Authorization: 'Basic ' + Variable.AuthorizationToken,
+                    Authorization: 'Basic ' + process.env.REACT_APP_AUTHORIZATION_TOKEN,
                     'Content-type': 'application/json'
                 }
             }
@@ -19,7 +18,7 @@ class Interface {
         const response = await axios.post(url, {
                 params: params,
                 headers: {
-                    Authorization: 'Basic ' + Variable.AuthorizationToken,
+                    Authorization: 'Basic ' + process.env.REACT_APP_AUTHORIZATION_TOKEN,
                     'Content-type': 'application/json'
                 }
             }
