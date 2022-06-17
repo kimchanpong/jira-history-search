@@ -17,14 +17,14 @@ function SearchForm(props) {
                     name="startDate"
                     label="기한 시작일시"
                     helperText="월간보고 시작 기준일(ex: 2022-01-01)"
-                    onChange={props.handleTag.bind(this)}
+                    {...props.register('startDate')}
                 />
                 <TextField
                     id="endDate"
                     name="endDate"
                     label="기한 종료일시"
                     helperText="월간보고 종료 기준일(ex: 2022-12-31)"
-                    onChange={props.handleTag.bind(this)}
+                    {...props.register('endDate')}
                 />
             </Box>
             <Box
@@ -37,14 +37,14 @@ function SearchForm(props) {
                     name="userName"
                     label="사용자명"
                     helperText="노트북 로그인계정의 등록 소유자명(ex: 홍길동)"
-                    onChange={props.handleTag.bind(this)}
+                    {...props.register('userName')}
                 />
                 <TextField
                     id="adAccount"
                     name="adAccount"
                     label="AD 계정"
                     helperText="노트북 로그인 계정(ex: Hong.Kildong)"
-                    onChange={props.handleTag.bind(this)}
+                    {...props.register('adAccount')}
                 />
             </Box>
             <Box

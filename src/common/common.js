@@ -3,12 +3,12 @@ class CommonUtil {
         return '/rest/api/2/search';
     }
 
-    static SearchQuerystring(type, state) {
+    static SearchQuerystring(type, data) {
         let querystring = '';
         if(type === 'NGCPO') {
-            querystring = `project=NGCPO AND due >= ${state.startDate} AND due <= ${state.endDate} AND assignee in (${state.adAccount}) order by updated DESC`;
+            querystring = `project=NGCPO AND due >= ${data.startDate} AND due <= ${data.endDate} AND assignee in (${data.adAccount}) order by updated DESC`;
         } else {
-            querystring = `project=EIH AND resolved >= ${state.startDate} AND resolved <= ${state.endDate} AND watcher in (${state.adAccount}) order by updated DESC`;
+            querystring = `project=EIH AND resolved >= ${data.startDate} AND resolved <= ${data.endDate} AND watcher in (${data.adAccount}) order by updated DESC`;
         }
 
         return querystring;
